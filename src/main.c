@@ -2,15 +2,19 @@
 
 int	main(int argc, char **argv)
 {
-	int	fd;
+	int		fd;
+	char	**map;
+	int		i;
 
 	if (argc != 2)
 		return (1);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (2);
-	if (!parsing(fd))
-		return (ft_printf("Error\n") - 3);
+	map = extract(fd);
 	close(fd);
+	i = 0;
+	while (map[i])
+		ft_printf("%s", map[i++]);
 	return (0);
 }

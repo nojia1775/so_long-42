@@ -54,7 +54,7 @@ int	check_items(char *str, t_items *items)
 	return (1);
 }
 
-static int	verif(int fd, char **tmp, t_items *items)
+static int	verif(int fd, char **tmp, t_items *items, t_map *map)
 {
 	char	*str;
 	int		count;
@@ -63,6 +63,7 @@ static int	verif(int fd, char **tmp, t_items *items)
 
 	count = 0;
 	str = get_next_line(fd);
+	new_line(&map, str);
 	model = ft_strlen(str);
 	while (str)
 	{
@@ -85,15 +86,17 @@ int	parsing(int fd)
 {
 	char	*tmp;
 	t_items	items;
+	t_map	*map;
 
+	map = NULL;
 	items.player = 0;
 	items.exit = 0;
 	items.collect = 0;
 	tmp = NULL;
-	if (!verif(fd, &tmp, &items))
+	if (!verif(fd, &tmp, &items, map))
 		return (0);
-	if (items.collect == 0 || items.player == 0 || items.exit == 0)
-		return (0);
+	if (items.collect == 0 || items.player != 1 || items.exit != 1)
+		return (free_error(NULL, tmp));
 	if (!isone(tmp))
 		return (ft_printf("map pas fermee bas\n") - 19);
 	free(tmp);
