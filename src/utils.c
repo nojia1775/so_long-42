@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_error.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nadjemia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 11:05:02 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/02/27 11:05:04 by nadjemia         ###   ########.fr       */
+/*   Created: 2024/02/27 15:39:12 by nadjemia          #+#    #+#             */
+/*   Updated: 2024/02/27 15:39:13 by nadjemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	free_error(char *str, char *tmp)
+size_t	modif_strlen(const char *str)
 {
-	if (str)
-		free(str);
-	if (tmp)
-		free(tmp);
-	return (0);
+	size_t	n;
+	int		i;
+
+	i = 0;
+	n = 0;
+	while (str[i])
+	{
+		if (str[i] != '\n')
+			n++;
+		i++;
+	}
+	return (n);
 }

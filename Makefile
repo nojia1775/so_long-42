@@ -4,7 +4,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCS = src/main.c \
        src/free_error.c \
-       src/extract_map.c
+       src/extract_map.c \
+       src/parsing.c \
+       src/utils.c
 
 OBJS = $(SRCS:.c=.o)
 

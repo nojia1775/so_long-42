@@ -1,104 +1,96 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nadjemia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/27 11:05:19 by nadjemia          #+#    #+#             */
+/*   Updated: 2024/02/27 11:05:20 by nadjemia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-static int	isone(char *str)
+static int	isgood(char *line, t_items *items)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (line[i])
 	{
-		if (str[i] != '1' && str[i] != '\n')
+		if (line[i] != '1' && line[i] != '0' && line[i] != 'E'
+			&& line[i] != 'P' && line[i] != 'C' && line[i] != '\n')
 			return (0);
-		i++;
-	}
-	return (1);
-}
-
-static int	wrongchar(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != '1' && (i == 0 || str[i + 1] == '\n'))
-			return (ft_printf("map pas fermee cote\n") - 19);
-		if (str[i] != '0' && str[i] != '1' && str[i] != 'P'
-			&& str[i] != 'E' && str[i] != 'C'
-			&& str[i] != '\n')
-			return (ft_printf("erreur char\n") - 11);
-		i++;
-	}
-	return (0);
-}
-
-int	check_items(char *str, t_items *items)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == 'P' && items->player > 0)
+		if (line[i] == 'E' && items->exit > 0)
 			return (0);
-		else if (str[i] == 'P' && items->player == 0)
-			items->player++;
-		if (str[i] == 'C')
+		else if (line[i] == 'E' && items->exit == 0)
+			items->exit = 1;
+		if (line[i] == 'P' &&  items->player > 0)
+			return (0);
+		else if (line[i] == 'P' && items->exit == 0)
+			items->player = 1;
+		if (line[i] == 'C')
 			items->collect++;
-		if (str[i] == 'E' && items->exit > 0)
-			return (0);
-		else if (str[i] == 'E' && items->exit == 0)
-			items->exit++;
 		i++;
 	}
 	return (1);
 }
 
-static int	verif(int fd, char **tmp, t_items *items, t_map *map)
+static int	closed(char *line, size_t len)
 {
-	char	*str;
-	int		count;
-	int		len;
-	int		model;
-
-	count = 0;
-	str = get_next_line(fd);
-	new_line(&map, str);
-	model = ft_strlen(str);
-	while (str)
+	if (line[0] != '1')
+		return (0);
+	if (line[len - 1] == '\n')
 	{
-		len = ft_strlen(str);
-		if (count == 0 && !isone(str))
-			return (free_error(str, *tmp));
-		if (wrongchar(str) || len != model || !check_items(str, items))
-			return (free_error(str, *tmp));
-		if (*tmp)
-			free(*tmp);
-		*tmp = ft_strdup(str);
-		free(str);
-		str = get_next_line(fd);
-		count++;
+		if (line[len - 2] != '1')
+			return (0);
+	}
+	else if (line[len - 1] != '1')
+		return (0);
+	return (1);
+	
+}
+
+static int	isone(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '1' && line[i] != '\n')
+			return (0);
+		i++;
 	}
 	return (1);
 }
 
-int	parsing(int fd)
+int	parsing(char **map)
 {
-	char	*tmp;
+	int		i;
 	t_items	items;
-	t_map	*map;
+	size_t	model;
+	size_t	len;
 
-	map = NULL;
-	items.player = 0;
-	items.exit = 0;
-	items.collect = 0;
-	tmp = NULL;
-	if (!verif(fd, &tmp, &items, map))
+	ft_bzero(&items, sizeof(items));
+	model = modif_strlen(map[0]);
+	i = 0;
+	while (map[i])
+	{
+		len = modif_strlen(map[i]);
+		if (len != model)
+			return (0);
+		if (!isgood(map[i], &items))
+			return (0);
+		if (i == 0 && !isone(map[i]))
+			return (0);
+		if (!closed(map[i], len))
+			return (0);
+		i++;
+	}
+	if (!isone(map[i - 1]) || items.collect == 0 || items.exit == 0
+		|| items.player == 0)
 		return (0);
-	if (items.collect == 0 || items.player != 1 || items.exit != 1)
-		return (free_error(NULL, tmp));
-	if (!isone(tmp))
-		return (ft_printf("map pas fermee bas\n") - 19);
-	free(tmp);
 	return (1);
 }

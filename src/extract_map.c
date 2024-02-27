@@ -1,23 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extract_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nadjemia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/27 11:04:52 by nadjemia          #+#    #+#             */
+/*   Updated: 2024/02/27 11:04:54 by nadjemia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-static void	free_map(t_map **map, char **mapping)
+int	free_map(t_map **map, char **mapping)
 {
 	t_map	*cur;
 	t_map	*rm;
 	int	i;
 
 	i = 0;
-	cur = *map;
-	while (cur)
+	if (map != NULL)
 	{
-		rm = cur;
-		cur = cur->next;
-		free(rm->line);
-		free(rm);
+		cur = *map;
+		while (cur)
+		{
+			rm = cur;
+			cur = cur->next;
+			free(rm->line);
+			free(rm);
+		}
 	}
-	while (mapping[i])
-		free(mapping[i++]);
-	free(mapping);
+	if (mapping)
+	{
+		while (mapping[i])
+			free(mapping[i++]);
+		free(mapping);
+	}
+	return (0);
 }
 
 static void	new_line(t_map **map, char *str)
@@ -44,7 +63,7 @@ static void	new_line(t_map **map, char *str)
 			return ;
 		cur->next->line = ft_strdup(str);
 		if (!cur->next->line)
-			return (free_map(map, NULL));
+			return ((void)free_map(map, NULL));
 		cur->next->next = NULL;
 	}
 }
