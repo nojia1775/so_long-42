@@ -26,9 +26,9 @@ static int	isgood(char *line, t_items *items)
 			return (0);
 		else if (line[i] == 'E' && items->exit == 0)
 			items->exit = 1;
-		if (line[i] == 'P' &&  items->player > 0)
+		if (line[i] == 'P' && items->player > 0)
 			return (0);
-		else if (line[i] == 'P' && items->exit == 0)
+		if (line[i] == 'P')
 			items->player = 1;
 		if (line[i] == 'C')
 			items->collect++;

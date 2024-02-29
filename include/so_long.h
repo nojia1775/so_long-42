@@ -14,7 +14,7 @@ int		free_error(char *str, char *tmp);
 char	**extract(int fd);
 int	free_map(t_map **map, char **mapping);
 size_t	modif_strlen(const char *str);
-
+int		goodway(char **map);
 
 struct	s_map
 {

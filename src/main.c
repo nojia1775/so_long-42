@@ -28,6 +28,10 @@ int	main(int argc, char **argv)
 	close(fd);
 	if (!parsing(map))
 		return (free_map(NULL, map) + 4);
+	goodway(map);
+	int i = 0;
+	while (map[i])
+		ft_printf("%s", map[i++]);
 	free_map(NULL, map);
 	return (0);
 }
