@@ -13,6 +13,10 @@ static void	findplayer(char **map, int *i, int *j)
 		{
 			if (map[x][y] == 'P')
 			{
+				if (map[x + 1][y] == '0')
+					map[x + 1][y] = '.';
+				if (map[x - 1][y] == '0')
+					map[x - 1][y] = '.';
 				*i = x;
 				*j = y;
 				return ;
@@ -23,47 +27,69 @@ static void	findplayer(char **map, int *i, int *j)
 	}
 }
 
-static void	turn2(char **map, int *x, int *y, int op)
+int	line(char **str, int i, int j)
 {
 	int	tmp;
+	int	count;
 
-	tmp = *x;
-	while (map[*x][*y] != '1')
+	count = 0;
+	tmp = j;
+	while (str[i][++j] != '1')
 	{
-		if (map[*x][*y] != 'C' && map[*x][*y] != 'P')
-			map[*x][*y] = '2';
-		while (map[*x][*y] != '1')
+		isitem(&str[i][j]);
+		if (str[i][j] == '0')
 		{
-			if (map[*x][*y] != 'C' && map[*x][*y] != 'P')
-				map[*x][*y] = '2';
-			if (map[*x + 1][*y] != '2' && map[*x + 1][*y] != '1')
-				(*x)++;
-			else if (map[*x - 1][*y] != '2'
-				&& map[*x - 1][*y] != '1')
-				(*x)--;
-			else
-				break ;
+			count++;
+			str[i][j] = '.';
 		}
-		*x = tmp;
-		if (op % 2 == 0)
-			(*y)++;
-		else
-			(*y)--;
 	}
+	j = tmp;
+	while (str[i][--j] != '1')
+	{
+		isitem(&str[i][j]);
+		if (str[i][j] == '0')
+		{
+			count++;
+			str[i][j] = '.';
+		}
+	}
+	return (count);
 }
 
-static int	findway(char **map, int *i, int *j)
+static int	setmap(char **str, int (*f)(char **, int, int))
 {
-	int	x;
-	int	y;
+	unsigned int	i;
+	unsigned int	j;
+	int		count;
 
-	x = *i;
-	y = *j;
-	
-	turn2(map, &x, &y, 2);
-	x = *i;
-	y = *j;
-	turn2(map, &x, &y, 1);
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] == '.' || str[i][j] == 'P'
+				|| str[i][j] == 'e' || str[i][j] == 'c')
+				count += f(str, i, j);
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}
+
+static int	findway(char **map, int x, int y)
+{
+	int	count;
+
+	count = 1;
+	line(map, x, y);
+	while (count)
+	{
+		count = setmap(map, row);
+		count += setmap(map, line);
+	}
 	return (0);
 }
 
@@ -73,6 +99,8 @@ int	goodway(char **map)
 	int		j;
 
 	findplayer(map, &i, &j);
-	findway(map, &i, &j);
-	return (0);
+	findway(map, i, j);
+	if (!canreachitems(map))
+		return (0);
+	return (1);
 }

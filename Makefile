@@ -7,7 +7,8 @@ SRCS = src/main.c \
        src/extract_map.c \
        src/parsing.c \
        src/utils.c \
-       src/goodway.c
+       src/goodway.c \
+       src/errors.c
 
 OBJS = $(SRCS:.c=.o)
 
