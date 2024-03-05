@@ -46,6 +46,8 @@ int	row(char **str, int i, int j)
 	while (str[++i][j] != '1')
 	{
 		isitem(&str[i][j]);
+		if (str[i][j] == 'e')
+			break ;
 		if (str[i][j] == '0')
 		{
 			count++;
@@ -56,6 +58,8 @@ int	row(char **str, int i, int j)
 	while (str[--i][j] != '1')
 	{
 		isitem(&str[i][j]);
+		if (str[i][j] == 'e')
+			break ;
 		if (str[i][j] == '0')
 		{
 			count++;

@@ -15,12 +15,15 @@
 int	main(int argc, char **argv)
 {
 	char	**map;
+	t_data	data;
 
 	if (errors(argc, argv, &map))
 		return (errors(argc, argv, &map));
-	int i = 0;
-	while (map[i])
-		ft_printf("%s", map[i++]);
+	data.mlx = mlx_init();
+	data.win = mlx_new_window(data.mlx, 500, 500, "SO_LONG");
+	mlx_loop(data.mlx);
+	mlx_destroy_window(data.mlx, data.win);
+	mlx_destroy_display(data.mlx);
 	free_map(NULL, map);
 	return (0);
 }

@@ -4,6 +4,7 @@
 
 # include "../FT_PRINTF/ft_printf.h"
 # include "../LIBFT/libft.h"
+# include "../minilibx-linux/mlx.h"
 
 typedef struct s_items	t_items;
 typedef struct s_data	t_data;

@@ -37,6 +37,8 @@ int	line(char **str, int i, int j)
 	while (str[i][++j] != '1')
 	{
 		isitem(&str[i][j]);
+		if (str[i][j] == 'e')
+			break ;
 		if (str[i][j] == '0')
 		{
 			count++;
@@ -47,6 +49,8 @@ int	line(char **str, int i, int j)
 	while (str[i][--j] != '1')
 	{
 		isitem(&str[i][j]);
+		if (str[i][j] == 'e')
+			break ;
 		if (str[i][j] == '0')
 		{
 			count++;
@@ -70,7 +74,7 @@ static int	setmap(char **str, int (*f)(char **, int, int))
 		while (str[i][j])
 		{
 			if (str[i][j] == '.' || str[i][j] == 'P'
-				|| str[i][j] == 'e' || str[i][j] == 'c')
+				|| str[i][j] == 'c')
 				count += f(str, i, j);
 			j++;
 		}
