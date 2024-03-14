@@ -10,6 +10,8 @@ typedef struct s_items	t_items;
 typedef struct s_data	t_data;
 typedef struct s_map	t_map;
 typedef struct s_good	t_good;
+typedef struct s_game	t_game;
+typedef struct s_image	t_image;
 
 int		parsing(char **map);
 int		free_error(char *str, char *tmp);
@@ -22,6 +24,13 @@ int		row(char **str, int i, int j);
 void	isitem(char *c);
 int		canreachitems(char **map);
 int		errors(int argc, char **argv, char ***map);
+
+struct	s_image
+{
+	void	*img;
+	int		width;
+	int		height;
+};
 
 struct	s_good
 {
@@ -39,6 +48,7 @@ struct	s_data
 {
 	void	*mlx;
 	void	*win;
+	t_image	*img;
 };
 
 struct	s_items
@@ -46,6 +56,12 @@ struct	s_items
 	int	exit;
 	int	player;
 	int	collect;
+};
+
+struct	s_game
+{
+	t_data	*data;
+	char	**map;
 };
 
 #endif

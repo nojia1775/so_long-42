@@ -2,6 +2,8 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
+OBJS_DIR = obj
+
 SRCS = src/main.c \
        src/free_error.c \
        src/extract_map.c \
@@ -10,7 +12,7 @@ SRCS = src/main.c \
        src/goodway.c \
        src/errors.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(patsubst src/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 NAME = so_long
 
@@ -19,6 +21,12 @@ $(NAME): $(OBJS)
 	@make -C FT_PRINTF/
 	@make -C minilibx-linux/
 	$(CC) $(CFLAGS) $^ -o $@ minilibx-linux/libmlx_Linux.a LIBFT/libft.a FT_PRINTF/libftprintf.a -lXext -lX11 -lm -lz -g3
+
+$(OBJS_DIR)/%.o: src/%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
 
 all: $(NAME)
 
