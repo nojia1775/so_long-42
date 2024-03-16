@@ -11,7 +11,6 @@ typedef struct s_data	t_data;
 typedef struct s_map	t_map;
 typedef struct s_good	t_good;
 typedef struct s_game	t_game;
-typedef struct s_image	t_image;
 
 int		parsing(char **map);
 int		free_error(char *str, char *tmp);
@@ -24,13 +23,8 @@ int		row(char **str, int i, int j);
 void	isitem(char *c);
 int		canreachitems(char **map);
 int		errors(int argc, char **argv, char ***map);
-
-struct	s_image
-{
-	void	*img;
-	int		width;
-	int		height;
-};
+void	my_mlx_new_window(t_game *game, int width, int height, char *tle);
+void	my_mlx_init(t_game *game);
 
 struct	s_good
 {
@@ -48,7 +42,9 @@ struct	s_data
 {
 	void	*mlx;
 	void	*win;
-	t_image	*img;
+	void	*img;
+	int		width;
+	int		height;
 };
 
 struct	s_items

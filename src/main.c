@@ -33,15 +33,12 @@ static int	escp_keypress(int keycode, t_data *game)
 int	main(int argc, char **argv)
 {
 	char	**map;
-	t_data	data;
 	t_game	game;
 
-	if (errors(argc, argv, &map))
-		return (errors(argc, argv, &map));
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 500, 500, "SO_LONG");
-	game.data = &data;
-	game.map = map;
+	errors(argc, argv, &map);
+	init_game(&game, map);
+	my_mlx_init(&game);
+	game.data->win = my_mlx_new_window(&game, 1920, 1080, "SO_LONG");
 	mlx_key_hook(data.win, escp_keypress, &game);
 	mlx_hook(game.data->win, 17, 0, close_win, &game);
 	mlx_loop(game.data->mlx);
