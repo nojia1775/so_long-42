@@ -20,3 +20,10 @@ int	free_error(char *str, char *tmp)
 		free(tmp);
 	return (0);
 }
+
+void	free_all(t_game *game)
+{
+	free_map(NULL, game->map);
+	free(game->data->mlx);
+	free(game->data);
+}

@@ -25,6 +25,9 @@ int		canreachitems(char **map);
 int		errors(int argc, char **argv, char ***map);
 void	my_mlx_new_window(t_game *game, int width, int height, char *tle);
 void	my_mlx_init(t_game *game);
+void	init_game(t_game *game, char **map);
+void	free_all(t_game *game);
+void	my_mlx_xpm_file_to_image(t_game *game, char *file);
 
 struct	s_good
 {

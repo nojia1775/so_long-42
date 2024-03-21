@@ -10,7 +10,8 @@ SRCS = src/main.c \
        src/parsing.c \
        src/utils.c \
        src/goodway.c \
-       src/errors.c
+       src/errors.c \
+       src/init_verif.c
 
 OBJS = $(patsubst src/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 

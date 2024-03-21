@@ -13,8 +13,6 @@ struct s_s
 
 int	main(void)
 {
-	_s	data;
-
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
