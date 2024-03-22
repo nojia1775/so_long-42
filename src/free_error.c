@@ -21,8 +21,14 @@ int	free_error(char *str, char *tmp)
 	return (0);
 }
 
-void	free_all(t_game *game)
+void	free_all(t_game *game, int destroy)
 {
+	if (destroy)
+	{
+		mlx_destroy_window(game->data->mlx, game->data->win);
+		mlx_destroy_image(game->data->mlx, game->data->img);
+		mlx_destroy_display(game->data->mlx);
+	}
 	free_map(NULL, game->map);
 	free(game->data->mlx);
 	free(game->data);

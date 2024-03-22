@@ -24,13 +24,20 @@ void	my_mlx_new_window(t_game *game, int width, int height, char *tle)
 
 void	init_game(t_game *game, char **map)
 {
+	int	i;
+
+	i = 0;
 	game->data = (t_data *)malloc(sizeof(t_data));
 	if (!game->data)
 	{
 		free_map(NULL, map);
 		exit(6);
 	}
+	while (map[i])
+		i++;
 	game->map = map;
+	game->width = ft_strlen(map[0]) - 1;
+	game->height = i;
 }
 
 void	my_mlx_xpm_file_to_image(t_game *game, char *file)
@@ -41,7 +48,17 @@ void	my_mlx_xpm_file_to_image(t_game *game, char *file)
 	{
 		mlx_destroy_window(game->data->mlx, game->data->win);
 		mlx_destroy_display(game->data->mlx);
-		free_all(game);
+		free_all(game, 0);
 		exit(7);
+	}
+}
+
+void	my_mlx_put_image_to_window(t_game *game, int x, int y)
+{
+	if (!mlx_put_image_to_window(game->data->mlx, game->data->win,
+		game->data->img, x, y))
+	{
+		free_all(game, 1);
+		exit(8);
 	}
 }

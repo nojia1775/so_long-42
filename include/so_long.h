@@ -26,8 +26,15 @@ int		errors(int argc, char **argv, char ***map);
 void	my_mlx_new_window(t_game *game, int width, int height, char *tle);
 void	my_mlx_init(t_game *game);
 void	init_game(t_game *game, char **map);
-void	free_all(t_game *game);
+void	free_all(t_game *game, int destroy);
 void	my_mlx_xpm_file_to_image(t_game *game, char *file);
+void	display_map(t_game *game);
+void	my_mlx_put_image_to_window(t_game *game, int x, int y);
+char	**wall_files(void);
+int	wall_1(t_game *game, int i, int j);
+int	wall_3(t_game *game, int i, int j);
+int	wall_0(t_game *game, int i, int j);
+int	wall_2(t_game *game, int i, int j);
 
 struct	s_good
 {
@@ -61,6 +68,8 @@ struct	s_game
 {
 	t_data	*data;
 	char	**map;
+	int	width;
+	int	height;
 };
 
 #endif

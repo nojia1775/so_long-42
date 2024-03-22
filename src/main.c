@@ -20,7 +20,7 @@ static int	close_win(void *arg)
 	mlx_destroy_image(game->data->mlx, game->data->img);
 	mlx_destroy_window(game->data->mlx, game->data->win);
 	mlx_destroy_display(game->data->mlx);
-	free_all(game);
+	free_all(game, 0);
 	exit(0);
 }
 
@@ -39,15 +39,11 @@ int	main(int argc, char **argv)
 	errors(argc, argv, &map);
 	init_game(&game, map);
 	my_mlx_init(&game);
-	my_mlx_new_window(&game, 1920, 1080, "SO_LONG");
-	my_mlx_xpm_file_to_image(&game, "textures/mine/stand/down.xpm");
-	mlx_put_image_to_window(game.data->mlx, game.data->win, game.data->img, 0, 0);
+	my_mlx_new_window(&game, game.width * 32, game.height * 32, "SO_LONG");
+	display_map(&game);
 	mlx_key_hook(game.data->win, escp_keypress, &game);
 	mlx_hook(game.data->win, 17, 0, close_win, &game);
 	mlx_loop(game.data->mlx);
-	mlx_destroy_image(game.data->mlx, game.data->img);
-	mlx_destroy_window(game.data->mlx, game.data->win);
-	mlx_destroy_display(game.data->mlx);
-	free_all(&game);
+	free_all(&game, 1);
 	return (0);
 }

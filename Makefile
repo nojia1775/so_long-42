@@ -11,7 +11,10 @@ SRCS = src/main.c \
        src/utils.c \
        src/goodway.c \
        src/errors.c \
-       src/init_verif.c
+       src/init_verif.c \
+       src/display_map.c \
+       src/files.c \
+       src/chose_asset.c \
 
 OBJS = $(patsubst src/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
