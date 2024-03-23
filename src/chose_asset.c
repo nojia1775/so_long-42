@@ -2,50 +2,73 @@
 
 int	wall_1(t_game *game, int i, int j)
 {
-	if (game->map[i][j - 1] == '1')
-		return (14);
-	if (game->map[i - 1][j] == '1')
-		return (12);
-	if (game->map[i][j + 1] == '1')
-		return (13);
-	if (game->map[i + 1][j] == '1')
-		return (15);
+	if (j > 0 && game->map[i][j - 1] == '1')
+		return (WD);
+	if (i > 0 && game->map[i - 1][j] == '1')
+		return (WD);
+	if (j < game->width - 1 && game->map[i][j + 1] == '1')
+		return (WD);
+	if (i < game->height - 1 && game->map[i + 1][j] == '1')
+		return (WPD);
+	return (0);
+}
+
+static int	exep(t_game *game, int i, int j)
+{
+	if (game->map[i + 1][j - 1] == '1'
+		&& game->map[i + 1][j + 1] != '1')
+		return (WDCUL);
+	if (game->map[i + 1][j - 1] != '1'
+		&& game->map[i + 1][j + 1] == '1')
+		return (WDCUR);
+	if (game->map[i + 1][j - 1] == '1'
+		&& game->map[i + 1][j + 1] == '1')
+		return (WPU);
+	if (game->map[i + 1][j - 1] != '1'
+		&& game->map[i + 1][j + 1] != '1')
+		return (WD);
 	return (0);
 }
 
 int	wall_3(t_game *game, int i, int j)
 {
-	if (game->map[i - 1][j] != '1')
-		return (2);
-	if (game->map[i][j - 1] != '1')
-		return (5);
-	if (game->map[i + 1][j] != '1')
-		return (3);
-	if (game->map[i][j + 1] != '1')
-		return (4);
+	if (i > 0 && game->map[i - 1][j] != '1')
+		return (WU);
+	if (j > 0 && game->map[i][j - 1] != '1')
+		return (WL);
+	if (i < game->height - 1 && game->map[i + 1][j] != '1')
+		return (exep(game, i, j));
+	if (j < game->width - 1 && game->map[i][j + 1] != '1')
+		return (WR);
 	return (0);
 }
 
 int	wall_0(t_game *game, int i, int j)
 {
-	if (game->map[i - 1][j] == '1')
-		return (0);
-	return (1);
+	if (i > 0 && game->map[i - 1][j] == '1')
+		return (W);
+	return (WD);
 }
 
 int	wall_2(t_game *game, int i, int j)
 {
-	if (game->map[i - 1][j] == '1' && game->map[i][j - 1] == '1')
-		return (7);
-	if (game->map[i][j - 1] == '1' && game->map[i + 1][j] == '1')
-		return (9);
-	if (game->map[i - 1][j] == '1' && game->map[i][j + 1] == '1')
-		return (6);
-	if (game->map[i + 1][j] == '1' && game->map[i][j + 1] == '1')
-		return (8);
-	if (game->map[i - 1][j] == '1' && game->map[i + 1][j] == '1')
-		return (11);
-	if (game->map[i][j - 1] == '1' && game->map[i][j + 1] == '1')
-		return (10);
+	if (i > 0 && j > 0 && game->map[i - 1][j] == '1'
+		&& game->map[i][j - 1] == '1')
+		return (WD);
+	if (j > 0 && i < game->height - 1 && game->map[i][j - 1] == '1'
+		&& game->map[i + 1][j] == '1')
+		return (WCUR);
+	if (i > 0 && j < game->width - 1 && game->map[i - 1][j] == '1'
+		&& game->map[i][j + 1] == '1')
+		return (WD);
+	if (i < game->height - 1 && j < game->width - 1 &&
+		game->map[i + 1][j] == '1' && game->map[i][j + 1] == '1')
+		return (WCUL);
+	if (i > 0 && i < game->height - 1 && game->map[i - 1][j] == '1'
+		&& game->map[i + 1][j] == '1')
+		return (WD);
+	if (j > 0 && j < game->width - 1 && game->map[i][j - 1] == '1'
+		&& game->map[i][j + 1] == '1')
+		return (WLR);
 	return (0);
 }

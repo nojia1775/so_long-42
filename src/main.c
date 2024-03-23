@@ -17,8 +17,8 @@ static int	close_win(void *arg)
 	t_game	*game;
 
 	game = (t_game *)arg;
-	mlx_destroy_image(game->data->mlx, game->data->img);
 	mlx_destroy_window(game->data->mlx, game->data->win);
+	mlx_destroy_image(game->data->mlx, game->data->img);
 	mlx_destroy_display(game->data->mlx);
 	free_all(game, 0);
 	exit(0);

@@ -15,6 +15,7 @@ SRCS = src/main.c \
        src/display_map.c \
        src/files.c \
        src/chose_asset.c \
+       src/first_last.c
 
 OBJS = $(patsubst src/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 

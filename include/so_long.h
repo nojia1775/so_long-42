@@ -2,6 +2,19 @@
 
 # define SO_LONG_H
 
+# define W 0 
+# define WCUL 1
+# define WCUR 2
+# define WDCUL 3
+# define WDCUR 4
+# define WD 5
+# define WL 6
+# define WR 7
+# define WU 8
+# define WLR 9
+# define WPU 10
+# define WPD 11
+
 # include "../FT_PRINTF/ft_printf.h"
 # include "../LIBFT/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -35,6 +48,10 @@ int	wall_1(t_game *game, int i, int j);
 int	wall_3(t_game *game, int i, int j);
 int	wall_0(t_game *game, int i, int j);
 int	wall_2(t_game *game, int i, int j);
+int		first_line(t_game *game, int i, int j);
+int		first_col(t_game *game, int i, int j);
+int		last_line(t_game *game, int i, int j);
+int		last_col(t_game *game, int i, int j);
 
 struct	s_good
 {
