@@ -6,7 +6,7 @@
 /*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:46:14 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 18:08:38 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:40:14 by nadjemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	display_map(t_game *game)
 			else if (game->map[i][j] == '0')
 				display(game, "textures/floor/floor.xpm", i, j);
 			else if (game->map[i][j] == 'P')
-				display(game, "textures/character/stand/down.xpm", i, j);
+				display(game, "textures/character/down.xpm", i, j);
 			else if (game->map[i][j] == 'E')
 				display(game, "textures/door/door.xpm", i, j);
 			else if (game->map[i][j] == 'C')

@@ -6,7 +6,7 @@
 /*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:46:48 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 18:08:38 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:17:09 by nadjemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data	t_data;
 typedef struct s_map	t_map;
 typedef struct s_good	t_good;
 typedef struct s_game	t_game;
+typedef struct s_coor	t_coor;
 
 int		parsing(t_game *game, char **map);
 int		free_error(char *str, char *tmp);
@@ -69,6 +70,16 @@ int		go_right(t_game *game);
 int		go_left(t_game *game);
 int		go_up(t_game *game);
 int		go_down(t_game *game);
+void	print_mov(t_game *game);
+
+struct s_coor
+{
+	int	i;
+	int	j;
+	int	new_i;
+	int	new_j;
+};
+
 
 struct	s_good
 {
@@ -106,6 +117,7 @@ struct	s_game
 	int		height;
 	int		to_c;
 	int		collected;
+	int		mov;
 };
 
 #endif

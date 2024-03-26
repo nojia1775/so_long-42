@@ -6,7 +6,7 @@
 /*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:46:05 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 17:59:18 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:45:45 by nadjemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	init_game(t_game *game, char **map)
 	game->width = ft_strlen(map[0]) - 1;
 	game->height = i;
 	game->collected = 0;
+	game->mov = 0;
 }
 
 void	my_mlx_xpm_file_to_image(t_game *game, char *file)
