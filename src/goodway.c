@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   goodway.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/26 15:46:32 by nadjemia          #+#    #+#             */
+/*   Updated: 2024/03/26 16:08:27 by nadjemia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-static void	findplayer(char **map, int *i, int *j)
+void	findplayer(char **map, int *i, int *j)
 {
 	int	x;
 	int	y;

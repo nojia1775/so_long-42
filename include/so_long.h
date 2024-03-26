@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/26 15:46:48 by nadjemia          #+#    #+#             */
+/*   Updated: 2024/03/26 18:08:38 by nadjemia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 
 # define SO_LONG_H
@@ -25,7 +37,7 @@ typedef struct s_map	t_map;
 typedef struct s_good	t_good;
 typedef struct s_game	t_game;
 
-int		parsing(char **map);
+int		parsing(t_game *game, char **map);
 int		free_error(char *str, char *tmp);
 char	**extract(int fd);
 int	free_map(t_map **map, char **mapping);
@@ -35,7 +47,7 @@ int		line(char **str, int i, int j);
 int		row(char **str, int i, int j);
 void	isitem(char *c);
 int		canreachitems(char **map);
-int		errors(int argc, char **argv, char ***map);
+int		errors(t_game *game, int argc, char **argv, char ***map);
 void	my_mlx_new_window(t_game *game, int width, int height, char *tle);
 void	my_mlx_init(t_game *game);
 void	init_game(t_game *game, char **map);
@@ -49,9 +61,14 @@ int	wall_3(t_game *game, int i, int j);
 int	wall_0(t_game *game, int i, int j);
 int	wall_2(t_game *game, int i, int j);
 int		first_line(t_game *game, int i, int j);
-int		first_col(t_game *game, int i, int j);
+int		firsto_cl(t_game *game, int i, int j);
 int		last_line(t_game *game, int i, int j);
-int		last_col(t_game *game, int i, int j);
+int		lasto_cl(t_game *game, int i, int j);
+void	findplayer(char **map, int *i, int *j);
+int		go_right(t_game *game);
+int		go_left(t_game *game);
+int		go_up(t_game *game);
+int		go_down(t_game *game);
 
 struct	s_good
 {
@@ -85,8 +102,10 @@ struct	s_game
 {
 	t_data	*data;
 	char	**map;
-	int	width;
-	int	height;
+	int		width;
+	int		height;
+	int		to_c;
+	int		collected;
 };
 
 #endif

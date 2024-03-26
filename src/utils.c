@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:39:12 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/02/27 15:39:13 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:30:23 by nadjemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,22 @@ void	isitem(char *c)
 		*c = 'e';
 }
 
+static int	row_(char **str, int i, int j, int count)
+{
+	while (str[--i][j] != '1')
+	{
+		isitem(&str[i][j]);
+		if (str[i][j] == 'e')
+			break ;
+		if (str[i][j] == '0')
+		{
+			count++;
+			str[i][j] = '.';
+		}
+	}
+	return (count);
+}
+
 int	row(char **str, int i, int j)
 {
 	int	tmp;
@@ -55,18 +71,7 @@ int	row(char **str, int i, int j)
 		}
 	}
 	i = tmp;
-	while (str[--i][j] != '1')
-	{
-		isitem(&str[i][j]);
-		if (str[i][j] == 'e')
-			break ;
-		if (str[i][j] == '0')
-		{
-			count++;
-			str[i][j] = '.';
-		}
-	}
-	return (count);
+	return (row_(str, i, j, count));
 }
 
 int	canreachitems(char **map)

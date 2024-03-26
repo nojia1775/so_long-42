@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/26 15:46:14 by nadjemia          #+#    #+#             */
+/*   Updated: 2024/03/26 18:08:38 by nadjemia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 static int	nbr_void(t_game *game, int i, int j)
@@ -21,11 +33,11 @@ static int	which_wall(t_game *game, int i, int j)
 	if (i == 0)
 		return (first_line(game, i, j));
 	if (j == 0)
-		return (first_col(game, i, j));
+		return (firsto_cl(game, i, j));
 	if (i == game->height - 1)
 		return (last_line(game, i, j));
 	if (j == game->width - 1)
-		return (last_col(game, i, j));
+		return (lasto_cl(game, i, j));
 	if (nbr_void(game, i, j) == 1)
 		return (wall_3(game, i, j));
 	if (nbr_void(game, i, j) == 3)
@@ -41,6 +53,7 @@ static void	display(t_game *game, char *file, int i, int j)
 {
 	my_mlx_xpm_file_to_image(game, file);
 	my_mlx_put_image_to_window(game, j * 32, i * 32);
+	mlx_destroy_image(game->data->mlx, game->data->img);
 }
 
 void	display_map(t_game *game)

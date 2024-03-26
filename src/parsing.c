@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:05:19 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/02/27 11:05:20 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:08:38 by nadjemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	isone(char *line)
 	return (1);
 }
 
-int	parsing(char **map)
+int	parsing(t_game *game, char **map)
 {
 	int		i;
 	t_items	items;
@@ -75,8 +75,8 @@ int	parsing(char **map)
 
 	ft_bzero(&items, sizeof(items));
 	model = modif_strlen(map[0]);
-	i = 0;
-	while (map[i])
+	i = -1;
+	while (map[++i])
 	{
 		len = modif_strlen(map[i]);
 		if (len != model)
@@ -87,10 +87,10 @@ int	parsing(char **map)
 			return (0);
 		if (!closed(map[i], len))
 			return (0);
-		i++;
 	}
 	if (!isone(map[i - 1]) || items.collect == 0 || items.exit == 0
 		|| items.player == 0)
 		return (0);
+	game->to_c = items.collect;
 	return (1);
 }

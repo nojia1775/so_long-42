@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:51:58 by nadjemia          #+#    #+#             */
-/*   Updated: 2023/11/12 13:58:59 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:08:38 by nadjemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-typedef struct s_coor	t_coor;
+typedef struct s_coor	to_cor;
 
 typedef struct s_coor
 {
 	int	d;
 	int	f;
-}		t_coor;
+}		to_cor;
 
-static void	ft_size(const char *str, const char *set, t_coor *coor);
+static void	ft_size(const char *str, const char *set, to_cor *coor);
 static int	ft_isset(char c, const char *set);
-static char	*ft_fill(char *str, const char *s1, t_coor *coor, const char *set);
+static char	*ft_fill(char *str, const char *s1, to_cor *coor, const char *set);
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	t_coor	coor;
+	to_cor	coor;
 	char	*str;
 
 	coor.d = 0;
@@ -45,7 +45,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (str);
 }
 
-static void	ft_size(char const *str, const char *set, t_coor *coor)
+static void	ft_size(char const *str, const char *set, to_cor *coor)
 {
 	size_t	i;
 
@@ -70,7 +70,7 @@ static int	ft_isset(char c, const char *set)
 	return (0);
 }
 
-static char	*ft_fill(char *str, const char *s1, t_coor *coor, const char *set)
+static char	*ft_fill(char *str, const char *s1, to_cor *coor, const char *set)
 {
 	int	i;
 

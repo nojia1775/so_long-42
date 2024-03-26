@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:35:30 by nadjemia          #+#    #+#             */
-/*   Updated: 2023/11/10 16:11:20 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:08:38 by nadjemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_count_words(const char *s, char c);
+static	int	fto_cunt_words(const char *s, char c);
 static	void	ft_free(char **noms);
 static	void	ft_wordlen(const char *s, char c, int *d, int *f);
 static	char	*ft_fill(const char *s, int *d, int *f);
@@ -28,7 +28,7 @@ char	**ft_split(char const *s, char c)
 	d = 0;
 	f = 0;
 	i = 0;
-	nbr_words = ft_count_words(s, c);
+	nbr_words = fto_cunt_words(s, c);
 	noms = malloc(sizeof(char *) * (nbr_words + 1));
 	if (noms == NULL)
 		return (NULL);
@@ -44,7 +44,7 @@ char	**ft_split(char const *s, char c)
 	return (noms);
 }
 
-static	int	ft_count_words(const char *s, char c)
+static	int	fto_cunt_words(const char *s, char c)
 {
 	int	words;
 	int	i;

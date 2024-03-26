@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   first_last.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/26 15:46:27 by nadjemia          #+#    #+#             */
+/*   Updated: 2024/03/26 18:08:38 by nadjemia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 int	first_line(t_game *game, int i, int j)
@@ -25,7 +37,7 @@ int	first_line(t_game *game, int i, int j)
 	return (WD);
 }
 
-int	first_col(t_game *game, int i, int j)
+int	firsto_cl(t_game *game, int i, int j)
 {
 	if (game->map[i][j + 1] == '1')
 		return (W);
@@ -41,7 +53,7 @@ int	last_line(t_game *game, int i, int j)
 		return (WU);
 }
 
-int	last_col(t_game *game, int i, int j)
+int	lasto_cl(t_game *game, int i, int j)
 {
 	if (game->map[i][j - 1] == '1')
 		return (W);

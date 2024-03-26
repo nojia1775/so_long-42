@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/26 15:46:18 by nadjemia          #+#    #+#             */
+/*   Updated: 2024/03/26 17:38:26 by nadjemia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 static int	ber(char *str)
@@ -12,7 +24,7 @@ static int	ber(char *str)
 	return (1);
 }
 
-int	errors(int argc, char **argv, char ***map)
+int	errors(t_game *game, int argc, char **argv, char ***map)
 {
 	int		fd;
 
@@ -27,7 +39,7 @@ int	errors(int argc, char **argv, char ***map)
 	if (*map == NULL)
 		exit (3);
 	close(fd);
-	if (!parsing(*map))
+	if (!parsing(game, *map))
 		exit (free_map(NULL, *map) + 4);
 	if (!goodway(*map))
 		exit (free_map(NULL, *map) + 5);
