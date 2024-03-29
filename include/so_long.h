@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:46:48 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 19:17:09 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:16:46 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		go_left(t_game *game);
 int		go_up(t_game *game);
 int		go_down(t_game *game);
 void	print_mov(t_game *game);
+void	verif_text(t_game *game);
 
 struct s_coor
 {

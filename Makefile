@@ -16,7 +16,8 @@ SRCS = src/main.c \
        src/files.c \
        src/chose_asset.c \
        src/first_last.c \
-       src/move.c
+       src/move.c \
+       src/test_text.c
 
 OBJS = $(patsubst src/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 

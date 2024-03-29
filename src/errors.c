@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:46:18 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 17:38:26 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:41:50 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ int	errors(t_game *game, int argc, char **argv, char ***map)
 	int		fd;
 
 	if (argc != 2)
-		exit (1);
+		exit (ft_printf("Error : invalid argument(s)\n") - 27);
 	if (!ber(argv[1]))
-		exit (4);
+		exit (ft_printf("Error : map's format invalid\n") - 25);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		exit (2);
+		exit (ft_printf("Error : can't open map\n") - 21);
 	*map = extract(fd);
 	if (*map == NULL)
-		exit (3);
+		exit (ft_printf("Error : can't extract map\n") - 23);
 	close(fd);
 	if (!parsing(game, *map))
-		exit (free_map(NULL, *map) + 4);
+		exit (ft_printf("Error : invalid map\n") + free_map(NULL, *map) - 16);
 	if (!goodway(*map))
-		exit (free_map(NULL, *map) + 5);
+		exit (ft_printf("Error : invalid path\n") + free_map(NULL, *map) - 16);
 	return (0);
 }

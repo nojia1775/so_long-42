@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:05:12 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 19:23:12 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:16:58 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int argc, char **argv)
 	errors(&game, argc, argv, &map);
 	init_game(&game, map);
 	my_mlx_init(&game);
+	verif_text(&game);
 	my_mlx_new_window(&game, game.width * 32, game.height * 32, "SO_LONG");
 	display_map(&game);
 	print_mov(&game);
