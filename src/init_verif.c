@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_verif.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:46:05 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 18:45:45 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:57:10 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	init_game(t_game *game, char **map)
 void	my_mlx_xpm_file_to_image(t_game *game, char *file)
 {
 	game->data->img = mlx_xpm_file_to_image(game->data->mlx, file,
-		&game->data->width, &game->data->height);
+			&game->data->width, &game->data->height);
 	if (!game->data->img)
 	{
 		mlx_destroy_window(game->data->mlx, game->data->win);

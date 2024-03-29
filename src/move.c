@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:53:42 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 19:21:22 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:00:42 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	go_left(t_game *game)
 	int		i;
 	int		j;
 	t_coor	coor;
-	
+
 	findplayer(game->map, &i, &j);
 	coor.i = i;
 	coor.j = j;
@@ -110,7 +110,7 @@ int	go_down(t_game *game)
 	int		i;
 	int		j;
 	t_coor	coor;
-	
+
 	findplayer(game->map, &i, &j);
 	coor.i = i;
 	coor.j = j;

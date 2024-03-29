@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:04:52 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/02/27 11:04:54 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:42:49 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	free_map(t_map **map, char **mapping)
 {
 	t_map	*cur;
 	t_map	*rm;
-	int	i;
+	int		i;
 
 	i = 0;
 	if (map != NULL)
@@ -71,7 +71,7 @@ static void	new_line(t_map **map, char *str)
 static int	lstsize(t_map *map)
 {
 	t_map	*cur;
-	int	size;
+	int		size;
 
 	size = 0;
 	cur = map;
@@ -85,7 +85,7 @@ static int	lstsize(t_map *map)
 
 static char	**lsttoarr(t_map *map, int size)
 {
-	int	i;
+	int		i;
 	t_map	*cur;
 	char	**mapping;
 
@@ -117,6 +117,8 @@ char	**extract(int fd)
 
 	str = get_next_line(fd);
 	map = NULL;
+	if (!str)
+		return (NULL);
 	while (str)
 	{
 		new_line(&map, str);

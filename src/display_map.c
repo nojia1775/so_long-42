@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:46:14 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 18:40:14 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:23:56 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	display_map(t_game *game)
 	int		j;
 
 	files = wall_files();
-	i = 0;
-	while (game->map[i])
+	i = -1;
+	while (game->map[++i])
 	{
-		j = 0;
-		while (game->map[i][j])
+		j = -1;
+		while (game->map[i][++j])
 		{
 			if (game->map[i][j] == '1')
 				display(game, files[which_wall(game, i, j)], i, j);
@@ -79,9 +79,7 @@ void	display_map(t_game *game)
 				display(game, "textures/door/door.xpm", i, j);
 			else if (game->map[i][j] == 'C')
 				display(game, "textures/collect/collect.xpm", i, j);
-			j++;
 		}
-		i++;
 	}
 	free(files);
 }

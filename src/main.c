@@ -20,7 +20,7 @@ void	print_mov(t_game *game)
 	my_mlx_xpm_file_to_image(game, "textures/wall/wall.xpm");
 	my_mlx_put_image_to_window(game, 0, 0);
 	mlx_destroy_image(game->data->mlx, game->data->img);
-	mlx_string_put(game->data->mlx, game->data->win, 14, 20, 
+	mlx_string_put(game->data->mlx, game->data->win, 14, 20,
 		0xFFFFFF, mov);
 	ft_printf("%s\n", mov);
 	free(mov);

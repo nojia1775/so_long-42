@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:05:19 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 18:08:38 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:59:43 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static int	closed(char *line, size_t len)
 	else if (line[len - 1] != '1')
 		return (0);
 	return (1);
-	
 }
 
 static int	isone(char *line)

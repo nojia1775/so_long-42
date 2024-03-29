@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   goodway.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadjemia <nadjemia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:46:32 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/26 16:08:27 by nadjemia         ###   ########.fr       */
+/*   Updated: 2024/03/29 20:20:21 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,44 +39,11 @@ void	findplayer(char **map, int *i, int *j)
 	}
 }
 
-int	line(char **str, int i, int j)
-{
-	int	tmp;
-	int	count;
-
-	count = 0;
-	tmp = j;
-	while (str[i][++j] != '1')
-	{
-		isitem(&str[i][j]);
-		if (str[i][j] == 'e')
-			break ;
-		if (str[i][j] == '0')
-		{
-			count++;
-			str[i][j] = '.';
-		}
-	}
-	j = tmp;
-	while (str[i][--j] != '1')
-	{
-		isitem(&str[i][j]);
-		if (str[i][j] == 'e')
-			break ;
-		if (str[i][j] == '0')
-		{
-			count++;
-			str[i][j] = '.';
-		}
-	}
-	return (count);
-}
-
 static int	setmap(char **str, int (*f)(char **, int, int))
 {
 	unsigned int	i;
 	unsigned int	j;
-	int		count;
+	int				count;
 
 	i = 0;
 	count = 0;

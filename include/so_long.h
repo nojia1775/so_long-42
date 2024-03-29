@@ -41,7 +41,7 @@ typedef struct s_coor	t_coor;
 int		parsing(t_game *game, char **map);
 int		free_error(char *str, char *tmp);
 char	**extract(int fd);
-int	free_map(t_map **map, char **mapping);
+int		free_map(t_map **map, char **mapping);
 size_t	modif_strlen(const char *str);
 int		goodway(char **map);
 int		line(char **str, int i, int j);
@@ -57,10 +57,10 @@ void	my_mlx_xpm_file_to_image(t_game *game, char *file);
 void	display_map(t_game *game);
 void	my_mlx_put_image_to_window(t_game *game, int x, int y);
 char	**wall_files(void);
-int	wall_1(t_game *game, int i, int j);
-int	wall_3(t_game *game, int i, int j);
-int	wall_0(t_game *game, int i, int j);
-int	wall_2(t_game *game, int i, int j);
+int		wall_1(t_game *game, int i, int j);
+int		wall_3(t_game *game, int i, int j);
+int		wall_0(t_game *game, int i, int j);
+int		wall_2(t_game *game, int i, int j);
 int		first_line(t_game *game, int i, int j);
 int		firsto_cl(t_game *game, int i, int j);
 int		last_line(t_game *game, int i, int j);
@@ -80,7 +80,6 @@ struct s_coor
 	int	new_i;
 	int	new_j;
 };
-
 
 struct	s_good
 {
