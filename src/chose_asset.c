@@ -6,7 +6,7 @@
 /*   By: noah <noah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:46:11 by nadjemia          #+#    #+#             */
-/*   Updated: 2024/03/29 19:57:51 by noah             ###   ########.fr       */
+/*   Updated: 2024/04/01 12:32:45 by noah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int	wall_2(t_game *game, int i, int j)
 		return (WCUL);
 	if (i > 0 && i < game->height - 1 && game->map[i - 1][j] == '1'
 		&& game->map[i + 1][j] == '1')
-		return (WD);
+		return (WLR);
 	if (j > 0 && j < game->width - 1 && game->map[i][j - 1] == '1'
 		&& game->map[i][j + 1] == '1')
-		return (WLR);
+		return (WD);
 	return (0);
 }
